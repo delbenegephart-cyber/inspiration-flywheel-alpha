@@ -63,6 +63,11 @@ export default function App() {
     setConceptRatio(img.naturalWidth >= img.naturalHeight ? "landscape" : "portrait");
   };
   const handleGenerate = () => {
+    if (!uploadedImage) {
+      setToast("请先上传草图");
+      setTimeout(() => setToast(""), 1800);
+      return;
+    }
     setIsGenerating(true);
     setGenerated(false);
     setProgress(0);
@@ -569,9 +574,23 @@ export default function App() {
           <div className="mt-4 rounded-2xl border border-white/10 bg-black/30 p-4">
             <p className="mb-3 text-sm font-semibold">空间建议</p>
             <ul className="space-y-2 text-sm text-zinc-300">
-              <li>·增加夜间识别性</li>
-              <li>·优化停留界面</li>
-              <li>·强化立面呼应</li>
+              {[
+                { text: "·增加夜间识别性", threshold: 25 },
+                { text: "·优化停留界面", threshold: 55 },
+                { text: "·强化立面呼应", threshold: 85 },
+              ].map((item) => {
+                const visible = generated || progress >= item.threshold;
+                return (
+                  <li
+                    key={item.text}
+                    className={`transition-all duration-500 ${
+                      visible ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-1"
+                    }`}
+                  >
+                    {item.text}
+                  </li>
+                );
+              })}
             </ul>
           </div>
 
