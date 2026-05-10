@@ -12,6 +12,25 @@ export default function App() {
   const [creativeDescription, setCreativeDescription] = useState("");
   const [showPreview, setShowPreview] = useState(false);
   const [structuralScore, setStructuralScore] = useState(0);
+  const [isGeneratingPPT, setIsGeneratingPPT] = useState(false);
+  const [showPPTPreview, setShowPPTPreview] = useState(false);
+
+  const handleGeneratePPT = () => {
+    setIsGeneratingPPT(true);
+    setTimeout(() => {
+      setIsGeneratingPPT(false);
+      setShowPPTPreview(true);
+    }, 2400);
+  };
+
+  const handleDownloadPPT = () => {
+    const link = document.createElement('a');
+    link.href = '/港口灯塔打卡装置设计.pptx';
+    link.download = '港口灯塔打卡装置设计.pptx';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   const handleUpload = (event) => {
     const file = event.target.files?.[0];
     if (!file) return;
@@ -118,6 +137,88 @@ export default function App() {
         </div>
       )}
 
+      {showPPTPreview && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 backdrop-blur-md p-6"
+          onClick={() => setShowPPTPreview(false)}
+        >
+          <div
+            className="relative w-full max-w-4xl overflow-hidden rounded-2xl border border-white/10 bg-zinc-950 shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between border-b border-white/10 bg-zinc-900/80 px-5 py-3">
+              <div className="flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-orange-500/20 text-orange-400">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                    <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm6 1.5a.5.5 0 011 0V8h2.5a.5.5 0 010 1H11v2.5a.5.5 0 01-1 0V9H7.5a.5.5 0 010-1H10V5.5z" clipRule="evenodd" />
+                  </svg>
+                </div>
+                <div>
+                  <p className="text-sm font-semibold text-white">港口灯塔打卡装置设计.pptx</p>
+                  <p className="text-xs text-zinc-500">PowerPoint 演示文稿 · 1.78 MB</p>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <button
+                  onClick={handleDownloadPPT}
+                  className="flex items-center gap-2 rounded-xl bg-emerald-400 px-4 py-2 text-sm font-bold text-black transition hover:bg-emerald-300"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4">
+                    <path d="M10.75 2.75a.75.75 0 00-1.5 0v8.614L6.295 8.235a.75.75 0 10-1.09 1.03l4.25 4.5a.75.75 0 001.09 0l4.25-4.5a.75.75 0 00-1.09-1.03l-2.955 3.129V2.75z" />
+                    <path d="M3.5 12.75a.75.75 0 00-1.5 0v2.5A2.75 2.75 0 004.75 18h10.5A2.75 2.75 0 0018 15.25v-2.5a.75.75 0 00-1.5 0v2.5c0 .69-.56 1.25-1.25 1.25H4.75c-.69 0-1.25-.56-1.25-1.25v-2.5z" />
+                  </svg>
+                  下载 PPT
+                </button>
+                <button
+                  onClick={() => setShowPPTPreview(false)}
+                  className="flex h-8 w-8 items-center justify-center rounded-lg text-zinc-500 transition hover:bg-white/10 hover:text-white"
+                  title="关闭"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5">
+                    <path d="M6.28 5.22a.75.75 0 00-1.06 1.06L8.94 10l-3.72 3.72a.75.75 0 101.06 1.06L10 11.06l3.72 3.72a.75.75 0 101.06-1.06L11.06 10l3.72-3.72a.75.75 0 00-1.06-1.06L10 8.94 6.28 5.22z" />
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="bg-zinc-100 p-8">
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-gradient-to-br from-slate-800 via-slate-900 to-black shadow-xl">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,.06)_1px,transparent_1px)] bg-[size:32px_32px]" />
+                <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-emerald-300 via-emerald-500 to-transparent" />
+
+                <div className="relative flex h-full flex-col justify-center px-16">
+                  <p className="text-xs font-semibold tracking-[0.4em] text-emerald-400">
+                    AHOLO · CONCEPT DESIGN
+                  </p>
+                  <h2 className="mt-6 text-5xl font-black leading-tight text-white">
+                    港口灯塔
+                    <br />
+                    打卡装置设计
+                  </h2>
+                  <p className="mt-6 max-w-md text-base text-zinc-400">
+                    Harbor Lighthouse Interactive Installation
+                  </p>
+                  <div className="mt-10 flex items-center gap-3 text-xs text-zinc-500">
+                    <span>方案版本 v1.0</span>
+                    <span className="h-1 w-1 rounded-full bg-zinc-600" />
+                    <span>Spatial Copilot Generated</span>
+                  </div>
+                </div>
+
+                <div className="absolute bottom-6 right-6 flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-400/40 bg-emerald-400/10">
+                  <span className="text-sm font-bold text-emerald-300">01</span>
+                </div>
+              </div>
+
+              <div className="mt-4 flex items-center justify-between text-xs text-zinc-500">
+                <span>第 1 页 / 共 12 页</span>
+                <span>点击下载查看完整方案</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
       <header className="mb-6 flex items-start justify-between">
         <div>
           <p className="text-sm font-semibold tracking-widest text-emerald-400">
@@ -146,6 +247,7 @@ export default function App() {
               type="file"
               accept="image/*"
               onChange={handleUpload}
+              onClick={(e) => { e.target.value = '' }}
               className="hidden"
             />
 
@@ -474,12 +576,28 @@ export default function App() {
           </div>
 
 
-          <div className="mt-4 rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-4">
+          <button
+            onClick={handleGeneratePPT}
+            disabled={isGeneratingPPT}
+            className="mt-4 w-full rounded-2xl border border-emerald-400/25 bg-emerald-400/10 p-4 text-left transition hover:border-emerald-400/50 hover:bg-emerald-400/20 disabled:cursor-not-allowed"
+          >
             <p className="text-sm font-semibold text-emerald-300">
               汇报输出
             </p>
-            <p className="mt-2 text-sm text-zinc-300">PPT Generated</p>
-          </div>
+            <p className="mt-2 flex items-center gap-2 text-sm text-zinc-300">
+              {isGeneratingPPT ? (
+                <>
+                  <svg className="h-4 w-4 animate-spin text-emerald-300" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="3" opacity="0.25" />
+                    <path d="M12 2a10 10 0 0 1 10 10" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+                  </svg>
+                  <span>正在生成 PPT...</span>
+                </>
+              ) : (
+                <span>点击生成 PPT →</span>
+              )}
+            </p>
+          </button>
 
           <button
             onClick={handleSync}
