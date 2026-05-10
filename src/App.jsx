@@ -187,36 +187,16 @@ export default function App() {
             </div>
 
             <div className="bg-zinc-100 p-8">
-              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-gradient-to-br from-slate-800 via-slate-900 to-black shadow-xl">
-                <div className="absolute inset-0 bg-[linear-gradient(rgba(16,185,129,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,.06)_1px,transparent_1px)] bg-[size:32px_32px]" />
-                <div className="absolute left-0 top-0 h-full w-1 bg-gradient-to-b from-emerald-300 via-emerald-500 to-transparent" />
-
-                <div className="relative flex h-full flex-col justify-center px-16">
-                  <p className="text-xs font-semibold tracking-[0.4em] text-emerald-400">
-                    AHOLO · CONCEPT DESIGN
-                  </p>
-                  <h2 className="mt-6 text-5xl font-black leading-tight text-white">
-                    港口灯塔
-                    <br />
-                    打卡装置设计
-                  </h2>
-                  <p className="mt-6 max-w-md text-base text-zinc-400">
-                    Harbor Lighthouse Interactive Installation
-                  </p>
-                  <div className="mt-10 flex items-center gap-3 text-xs text-zinc-500">
-                    <span>方案版本 v1.0</span>
-                    <span className="h-1 w-1 rounded-full bg-zinc-600" />
-                    <span>Spatial Copilot Generated</span>
-                  </div>
-                </div>
-
-                <div className="absolute bottom-6 right-6 flex h-12 w-12 items-center justify-center rounded-xl border border-emerald-400/40 bg-emerald-400/10">
-                  <span className="text-sm font-bold text-emerald-300">01</span>
-                </div>
+              <div className="relative aspect-[16/9] w-full overflow-hidden rounded-xl bg-white shadow-xl">
+                <img
+                  src="/ppt-slide1.png"
+                  alt="港口灯塔打卡装置设计 - 第 1 页"
+                  className="h-full w-full object-contain"
+                />
               </div>
 
               <div className="mt-4 flex items-center justify-between text-xs text-zinc-500">
-                <span>第 1 页 / 共 12 页</span>
+                <span>第 1 页 / 共 1 页</span>
                 <span>点击下载查看完整方案</span>
               </div>
             </div>
